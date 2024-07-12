@@ -1,0 +1,21 @@
+.custom-table-header {
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.5em;
+}
+
+ion-item {
+  text-align: center;
+}
+
+// ion-label {
+//   display: block;
+//   padding: 10px;
+//   text-align: center;
+// }
+
+.custom-table-row {
+  ion-label {
+    font-size: 0.5em;
+  }
+}

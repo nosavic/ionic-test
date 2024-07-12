@@ -1,0 +1,127 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Add Contact</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Add Contact</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form [formGroup]="contactForm" (ngSubmit)="saveContact()">
+    <ion-list lines="none">
+      <ion-item>
+        <ion-col>
+          <ion-input
+            type="text"
+            label="Name"
+            label-placement="floating"
+            fill="outline"
+            formControlName="name"
+            placeholder="Enter your name"
+          ></ion-input>
+          <div
+            *ngIf="contactForm.get('name')?.invalid && (contactForm.get('name')?.touched || contactForm.get('name')?.dirty)"
+          >
+            <ion-text color="danger">Name is required.</ion-text>
+          </div>
+        </ion-col>
+      </ion-item>
+
+      <ion-item>
+        <ion-col>
+          <ion-input
+            type="tel"
+            label="Phone Number"
+            label-placement="floating"
+            fill="outline"
+            formControlName="phone"
+            placeholder="Enter Phone Number"
+          ></ion-input>
+          <div
+            *ngIf="contactForm.get('phone')?.invalid && (contactForm.get('phone')?.touched || contactForm.get('phone')?.dirty)"
+          >
+            <ion-text color="danger"
+              >A valid phone number is required.</ion-text
+            >
+          </div>
+        </ion-col>
+      </ion-item>
+
+      <ion-item>
+        <ion-col>
+          <ion-input
+            type="email"
+            label="Email"
+            label-placement="floating"
+            fill="outline"
+            formControlName="email"
+            placeholder="Enter Email Address"
+          ></ion-input>
+          <div
+            *ngIf="contactForm.get('email')?.invalid && (contactForm.get('email')?.touched || contactForm.get('email')?.dirty)"
+          >
+            <ion-text color="danger"
+              >A valid email is required (e.g.,
+              user"&#64;"domain.com).</ion-text
+            >
+          </div>
+        </ion-col>
+      </ion-item>
+
+      <ion-item *ngFor="let address of addresses.controls; let i = index">
+        <ion-col>
+          <ion-input
+            type="text"
+            [label]="'Address ' + (i + 1)"
+            label-placement="floating"
+            fill="outline"
+            placeholder="Address"
+            (ionInput)="updateAddress($event, i)"
+          ></ion-input>
+          <!-- <div
+          *ngIf="addresses.at(i).invalid && (addresses.at(i).touched || addresses.at(i).dirty)"
+          >
+          <ion-text color="danger">At least one address is required.</ion-text>
+        </div> -->
+        </ion-col>
+        <ion-icon
+          name="remove-circle"
+          (click)="removeAddress(i)"
+          *ngIf="addresses.length > 1"
+        ></ion-icon>
+      </ion-item>
+
+      <ion-button expand="block" (click)="addAddress()">Add Address</ion-button>
+
+      <ion-item>
+        <ion-input
+          type="text"
+          label="Longitude"
+          label-placement="floating"
+          fill="outline"
+          formControlName="longitude"
+          readonly
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          type="text"
+          label="Latitude"
+          label-placement="floating"
+          fill="outline"
+          formControlName="latitude"
+          readonly
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" type="submit" [disabled]="contactForm.invalid"
+      >Save</ion-button
+    >
+  </form>
+</ion-content>

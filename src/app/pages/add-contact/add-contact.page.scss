@@ -1,0 +1,15 @@
+ion-input {
+  --placeholder-opacity: 0.5; /* Adjust opacity for faint placeholder */
+  //   overflow: visible;
+}
+
+ion-item {
+  margin-bottom: 20px; /* Adjust as needed for spacing between fields */
+  overflow: visible;
+}
+
+ion-button {
+  margin-top: 15px; /* Adjust as needed for spacing above the button */
+  padding-inline: 20px;
+  margin-bottom: 30px;
+}
