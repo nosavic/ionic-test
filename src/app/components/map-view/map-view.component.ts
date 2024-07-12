@@ -1,39 +1,49 @@
-// import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { StorageService } from 'src/app/services/storage.service';
+import { Contact } from 'src/app/models/contact.model';
+import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 
-// @Component({
-//   selector: 'app-map-view',
-//   templateUrl: './map-view.component.html',
-//   styleUrls: ['./map-view.component.scss'],
-//   import { latLng, MapOptions, tileLayer, Map, Marker, marker } from 'leaflet';
-// })
-// export class MapViewComponent implements OnInit {
-//   mapOptions: MapOptions;
-//   map: Map;
-//   markers: Marker[];
+@Component({
+  selector: 'app-map-view',
+  standalone: true,
+  templateUrl: './map-view.component.html',
+  styleUrls: ['./map-view.component.scss'],
+  imports: [IonicModule, CommonModule],
+})
+export class MapViewComponent implements OnInit, AfterViewInit {
+  contacts: Contact[] = [];
+  map!: google.maps.Map;
 
-//   constructor() {
-//     this.mapOptions = {
-//       layers: [
-//         tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//           maxZoom: 18,
-//           attribution:
-//             'Map data © <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-//         }),
-//       ],
-//       zoom: 12,
-//       center: latLng(51.505, -0.09), // Default center coordinates
-//     };
+  constructor(private storageService: StorageService) {}
 
-//     this.markers = [
-//       marker([51.505, -0.09]).bindPopup('Marker 1'),
-//       marker([51.51, -0.1]).bindPopup('Marker 2'),
-//       // Add more markers as needed
-//     ];
-//   }
+  async ngOnInit() {
+    this.contacts = await this.storageService.getAllContacts();
+  }
 
-//   onMapReady(map: Map) {
-//     this.map = map;
-//   }
+  ngAfterViewInit() {
+    this.loadMap();
+  }
 
-//   ngOnInit() {}
-// }
+  loadMap() {
+    const mapOptions: google.maps.MapOptions = {
+      center: { lat: 0, lng: 0 },
+      zoom: 2,
+    };
+
+    this.map = new google.maps.Map(
+      document.getElementById('map') as HTMLElement,
+      mapOptions
+    );
+
+    this.contacts.forEach((contact) => {
+      if (contact.latitude && contact.longitude) {
+        new google.maps.Marker({
+          position: { lat: contact.latitude, lng: contact.longitude },
+          map: this.map,
+          title: contact.name,
+        });
+      }
+    });
+  }
+}

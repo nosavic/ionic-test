@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
+import { MapViewComponent } from './components/map-view/map-view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main/dashboard', pathMatch: 'full' },
+  {
+    path: 'map-view',
+    component: MapViewComponent,
+  },
   {
     path: 'main',
     component: MainLayoutComponent,

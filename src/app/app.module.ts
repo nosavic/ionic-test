@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { MainLayoutModule } from './components/main-layout/main-layout.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MainLayoutModule,
     IonicStorageModule.forRoot(),
     ReactiveFormsModule,
+    GoogleMapsModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

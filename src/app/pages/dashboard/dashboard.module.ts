@@ -7,9 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
+import { MapViewComponent } from '../../components/map-view/map-view.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, DashboardPageRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    DashboardPageRoutingModule,
+    MapViewComponent,
+  ],
   declarations: [DashboardPage],
   exports: [DashboardPage],
 })
