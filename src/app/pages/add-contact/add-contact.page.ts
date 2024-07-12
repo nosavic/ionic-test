@@ -21,10 +21,7 @@ export class AddContactPage implements OnInit {
   ) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
-      phone: [
-        '',
-        [Validators.required, Validators.pattern('^\\+?[1-9][0-9]{7,14}$')],
-      ],
+      phone: ['', [Validators.required, Validators.pattern('^0[0-9]{9,14}$')]],
       email: ['', [Validators.required, Validators.email]],
       addresses: this.fb.array([this.fb.control('', Validators.required)]),
       longitude: [{ value: 58.2277, disabled: true }],
