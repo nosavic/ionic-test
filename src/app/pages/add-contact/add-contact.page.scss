@@ -1,15 +1,25 @@
-ion-input {
-  --placeholder-opacity: 0.5; /* Adjust opacity for faint placeholder */
-  //   overflow: visible;
+.ios ion-input {
+  --placeholder-opacity: 0.5;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --padding-top: 0px;
+  --padding-bottom: 14px;
+  --background: #f9f9f9;
+  --border-radius: 10px;
+  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --border-color: #e0e0e0;
+  --border-width: 1px;
+  --border-style: solid;
+  --highlight-background: #f0f0f0;
 }
 
 ion-item {
-  margin-bottom: 20px; /* Adjust as needed for spacing between fields */
+  margin-bottom: 20px;
   overflow: visible;
 }
 
 ion-button {
-  margin-top: 15px; /* Adjust as needed for spacing above the button */
+  margin-top: 15px;
   padding-inline: 20px;
   margin-bottom: 30px;
 }
